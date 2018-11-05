@@ -1,0 +1,55 @@
+#col-ext-body {
+    border: solid 1px black;
+    border-radius: 2%;
+    padding-left: 4px;
+    width: 300px;
+}
+
+.col-ext-nav {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    min-width: 96%;
+}
+
+.col-ext-nav p {
+    display: inline-grid;
+    border: 1px solid #707070;
+    width: 48%;
+}
+
+#col-ext-help {
+    text-align: center;
+    margin-right: -3px;
+    margin-bottom: 0;
+    background-color: #e9e9ff;
+    border-right:transparent;
+    border-bottom: transparent;
+    height:20px;
+    padding-top: 4px;
+    border-radius: 6px 0 0 0;
+}
+
+#col-ext-magic-tool {
+    margin-bottom: 0;
+    text-align: center;
+    background-color: #e9e9ff;
+    border-bottom: transparent;
+    border-left:transparent;
+    height:20px;
+    padding-top: 4px;
+    border-radius: 0 6px 0 0;
+}
+
+#col-ext-color-picker {
+    margin-top: -8px;
+    border-top: transparent;
+    text-align: center;
+    background-color: #e9e9ff;
+    height:30px;
+    padding-top: 4px;
+    border-radius: 0 0 6px 6px;
+    width: 96%;
+}
+
+.col-ext-content {
+    border: 1px solid #707070;
+}
