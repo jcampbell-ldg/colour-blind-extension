@@ -1,7 +1,6 @@
 #col-ext-body {
-    border: solid 1px black;
-    border-radius: 2%;
-    padding-left: 4px;
+    padding-left: 10px;
+    margin: 0;
     width: 300px;
 }
 
@@ -50,6 +49,29 @@
     width: 96%;
 }
 
-.col-ext-content {
-    border: 1px solid #707070;
+#col-ext-help-cont {
+    text-align: center;
+    background-color: #e9e9ff;
+    border: 1px solid black;
+    border-radius: 6px;
+    width: 96%;
+    height: 40px;
+}
+
+#col-ext-magic-tool-cont {
+    text-align: center;
+    background-color: #e9e9ff;
+    border: 1px solid black;
+    border-radius: 6px;
+    width: 96%;
+    height: 40px;
+}
+
+#col-ext-color-picker-cont {
+    text-align: center;
+    background-color: #e9e9ff;
+    border: 1px solid black;
+    border-radius: 6px;
+    width: 96%;
+    height: 40px;
 }
