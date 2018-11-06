@@ -99,9 +99,6 @@ function backgroundColor(id) {
         case '1':
             // localStorage.setItem('colorId', id);
             // document.cookie = 'colorId' + '=' + id + ";path=/;expires=" + d.toGMTString();
-            //
-            // alert('cookieSet');
-            // chrome.tabs.executeScript(null, {file: "jquery-3.3.1.min.js"});
             chrome.tabs.executeScript(null, {file: "contentChanger.js"});
             break;
         case '2':

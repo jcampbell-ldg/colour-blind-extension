@@ -3,6 +3,10 @@ $(document).ready(function () {
     //     alert(obj.colorId)
     // });
 
+    // var cookie = document.cookie('colorId');
+    //
+    // console.log(cookie);
+
 
     var elements = document.querySelectorAll('*');
 
@@ -12,7 +16,8 @@ $(document).ready(function () {
         for(var j = 0; j < element.childNodes.length; j++){
             var node = element.childNodes[j];
             // console.log(node.nodeType);
-            $(node).css('background-color', 'red');
+            // $(node).css('background-color', 'pink');
+            $(node).css('background-image', 'linear-gradient(pink,transparent)');
         }
 
     }
