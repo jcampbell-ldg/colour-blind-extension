@@ -7,6 +7,20 @@ $(document).ready(function () {
     var helpCont = $('#col-ext-help-cont');
     var magicCont = $('#col-ext-magic-tool-cont');
     var colorCont = $('#col-ext-color-picker-cont');
+
+    chrome.storage.sync.get(["colorId"], function (items) {
+        if (items['colorId'] !== null) {
+            console.log(items['colorId']);
+            backgroundColor(items['colorId']);
+        } else {
+            return null;
+        }
+    });
+
+    $('#col-ext-color-off').click(function () {
+        backgroundColor('5');
+    });
+
     $('#1').click(function () {
         backgroundColor(this.id);
     });
@@ -92,26 +106,28 @@ $(document).ready(function () {
 
 //dominic's code
 function backgroundColor(id) {
-    var d = new Date;
-    d.setTime(d.getTime() + 24*60*60*1000);
-
     switch (id) {
         case '1':
-            // localStorage.setItem('colorId', id);
-            // document.cookie = 'colorId' + '=' + id + ";path=/;expires=" + d.toGMTString();
+            chrome.storage.sync.set({"colorId": id});
             chrome.tabs.executeScript(null, {file: "contentChanger.js"});
             break;
         case '2':
-            alert('two');
+            chrome.storage.sync.set({"colorId": id});
+            chrome.tabs.executeScript(null, {file: "contentChanger.js"});
             break;
         case '3':
-            alert('three');
+            chrome.storage.sync.set({"colorId": id});
+            chrome.tabs.executeScript(null, {file: "contentChanger.js"});
             break;
         case '4':
-            alert('four');
+            chrome.storage.sync.set({"colorId": id});
+            chrome.tabs.executeScript(null, {file: "contentChanger.js"});
             break;
-
+        case '5':
+            chrome.storage.sync.set({"colorId": id});
+            chrome.tabs.executeScript(null, {file: "contentChanger.js"});
+            break;
         default:
-            alert('none');
+            break;
     }
 }
