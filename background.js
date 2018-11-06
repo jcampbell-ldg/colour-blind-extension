@@ -10,6 +10,15 @@ $(document).ready(function () {
     $('#1').click(function () {
         backgroundColor(this.id);
     });
+    $('#2').click(function () {
+        backgroundColor(this.id);
+    });
+    $('#3').click(function () {
+        backgroundColor(this.id);
+    });
+    $('#4').click(function () {
+        backgroundColor(this.id);
+    });
     helpCont.hide();
     magicCont.hide();
     colorCont.hide();
@@ -51,6 +60,7 @@ $(document).ready(function () {
         showHideTab(lastCol);
     });
 
+//lucys code
     function showHideTab(id) {
 
         if (lastElement !== '') {
@@ -80,20 +90,28 @@ $(document).ready(function () {
 
 });
 
-
+//dominic's code
 function backgroundColor(id) {
+    var d = new Date;
+    d.setTime(d.getTime() + 24*60*60*1000);
+
     switch (id) {
         case '1':
-            $('body').fadeOut(100).delay(200).css("ackground-color", 'red');
+            // localStorage.setItem('colorId', id);
+            // document.cookie = 'colorId' + '=' + id + ";path=/;expires=" + d.toGMTString();
+            //
+            // alert('cookieSet');
+            // chrome.tabs.executeScript(null, {file: "jquery-3.3.1.min.js"});
+            chrome.tabs.executeScript(null, {file: "contentChanger.js"});
             break;
         case '2':
-            alert('one');
+            alert('two');
             break;
         case '3':
-            alert('one');
+            alert('three');
             break;
         case '4':
-            alert('one');
+            alert('four');
             break;
 
         default:

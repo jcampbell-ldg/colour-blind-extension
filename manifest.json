@@ -1,8 +1,14 @@
 {
   "name": "ICColours",
-  "description" : "Base Level Extension",
-  "version": "1.0",
-  "permissions": ["activeTab"],
+  "description" : "Extension to modify a pages css to aid color blind users.",
+  "version": "0.1.0",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs",
+    "http://*/*",
+    "https://*/*"
+  ],
   "background": {
     "scripts": ["jquery-3.3.1.min.js","background.js"],
     "persistent": false
