@@ -141,3 +141,8 @@
     cursor: pointer;
 }
 
+.highlight {
+    color:black;
+    border:solid 3px red;
+}
+

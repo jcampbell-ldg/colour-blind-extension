@@ -10,11 +10,15 @@ $(document).ready(function () {
 
     chrome.storage.sync.get(["colorId"], function (items) {
         if (items['colorId'] !== null) {
-            console.log(items['colorId']);
             backgroundColor(items['colorId']);
         } else {
             return null;
         }
+    });
+
+
+    $('#col-ext-magic-arrow-cont').click(function () {
+        chrome.tabs.executeScript(null, {file: "magicMouse.js"});
     });
 
     $('#col-ext-color-off').click(function () {
