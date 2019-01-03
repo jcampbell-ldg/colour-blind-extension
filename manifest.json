@@ -1,0 +1,21 @@
+{
+  "short_name": "CBPR",
+  "name": "Colour Blind Page Renderer",
+  "description" : "Change colours on webpages to help aid the user.",
+  "version": "0.0.1",
+  "icons": {
+    "16": "/public/images/Logo.png",
+    "32": "/public/images/Logo.png",
+    "48": "/public/images/Logo.png",
+    "64": "/public/images/Logo.png",
+    "128": "/public/images/Logo.png"
+  },
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab"
+  ],
+  "manifest_version": 2
+}
+
