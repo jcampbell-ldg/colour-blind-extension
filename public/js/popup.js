@@ -1,4 +1,13 @@
 $(document).ready(function(){
+    chrome.storage.sync.get('new_user', function(items){
+        if(items['new_user']){
+            alert('test');
+        } else {
+            firstTimeSetup();
+        }
+    });
+
+
     $('.tab').click(function(){
         var contentId = (this.id).slice(0, -4);
         $('.content').hide();
@@ -80,9 +89,9 @@ function setColour() {
         }, function () {
             chrome.tabs.executeScript({
                 file: "public/js/content.js"
-            })
-        })
-    })
+            });
+        });
+    });
 }
 
 function loadOptions()
@@ -142,13 +151,29 @@ function saveConfig()
     })
 }
 
-// function setData()
-// {
-//     chrome.storage.sync.set({
-//         config_1: {name: 'Config One', bgColour: 'white', fontColour: 'black', borderColour: 'black'},
-//         config_2: {name: 'Config Two', bgColour: 'white', fontColour: 'black', borderColour: 'black'},
-//         config_3: {name: 'Config Three', bgColour: 'white', fontColour: 'black', borderColour: 'black'},
-//         config_4: {name: 'Config Four', bgColour: 'white', fontColour: 'black', borderColour: 'black'},
-//         config_5: {name: 'Config Five', bgColour: 'white', fontColour: 'black', borderColour: 'black'}
-//     });
-// }
+function checkForNewUser()
+{
+
+
+
+}
+
+//First Time Setup
+function firstTimeSetup()
+{
+    chrome.storage.sync.clear();
+    setConfigs();
+}
+
+//Sets the predefined configs
+function setConfigs()
+{
+    chrome.storage.sync.set({
+        config_1: {name: 'Deuteranopia', bgColour: '#efefff', fontColour: '#252525', borderColour: '#252525'},
+        config_2: {name: 'Protanopia', bgColour: '#e8e8db', fontColour: '#3d3d9b', borderColour: '#3d3d9b'},
+        config_3: {name: 'Tritanopia', bgColour: '#fbdee2', fontColour: '#252525', borderColour: '#252525'},
+        config_4: {name: 'Protanopia/Tritanopia', bgColour: '#b6b690', fontColour: '#3d3d9b', borderColour: '#3d3d9b'},
+        config_5: {name: 'Deuteranopia/Tritanopia', bgColour: '#edf3f7', fontColour: '#a60037', borderColour: '#a60037'},
+        new_user: true
+    });
+}
