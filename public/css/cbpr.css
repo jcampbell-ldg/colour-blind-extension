@@ -41,6 +41,7 @@ body{
 }
 
 #content{
+    overflow: scroll;
     width: 340px;
     border: 1px solid lightgrey;
     border-radius: 3px;
@@ -177,4 +178,64 @@ body{
     border: 1px solid black;
     margin-right: 2px;
     text-align: center;
+}
+
+.contact_txt{
+    font-size: xx-small;
+    text-align: center;
+}
+
+.contact_img{
+    margin-top: 5px;
+    margin-bottom: -10px;
+    width: 20px;
+    height:20px;
+    margin-left: 40px;
+}
+
+#help-title{
+    margin-left: 30%;
+    padding: 2px;
+    font-size: x-large;
+    color: darkgreen;
+}
+
+div hr {
+
+}
+
+.drop_down_tip {
+    margin-left: 5px;
+    padding-bottom: 15px;
+}
+.drop_down_tip_open {
+    margin-left: 5px;
+}
+
+.drop_down_tip::after {
+    margin-right: 15px;
+    float: right;
+    width: 13px;
+    height: 13px;
+    cursor: pointer;
+    content: url("../images/circle-right.png");
+}
+
+.drop_down_tip_open::after {
+    margin-right: 15px;
+    float: right;
+    width: 13px;
+    height: 13px;
+    cursor: pointer;
+    content: url("../images/circle-down.png");
+}
+
+.contentTabs {
+    width: 95%;
+    margin-left: 5px;
+    word-wrap: normal;
+}
+.contact_txt_below {
+    font-size: 7px;
+    margin-left: 1px;
 }
