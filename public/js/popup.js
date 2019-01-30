@@ -1,8 +1,7 @@
 $(document).ready(function () {
 
-    for (var x = 1; x < 6; x++) {
-        $('#content' + x).hide();
-    }
+    $('.contentTabs').hide();
+
     chrome.storage.sync.get('new_user', function (items) {
         if (items['new_user']) {
         } else {
@@ -10,6 +9,7 @@ $(document).ready(function () {
         }
     });
 
+    $('#button_test').on('click', revertChanges);
 
     $('.tab').click(function () {
         var contentId = (this.id).slice(0, -4);
@@ -32,7 +32,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#colour_changer_tab_right').click(function () {
+    $('#colour_changer_tab_right').on('click', function () {
         var id = $('#colour_changer_tab_left').nextAll('.colour_changer_options_tab:visible').attr('id');
         var id_count = parseInt(id.slice(-1));
         var total_count = $('.colour_changer_options_tab').length;
@@ -43,36 +43,36 @@ $(document).ready(function () {
         }
     });
 
-    $('.colour_changer_options_tab').click(function () {
+    $('.colour_changer_options_tab').on('click', function () {
         $('.colour_active').removeClass('colour_active');
         $(this).addClass('colour_active');
 
         previewColours(this.id);
     });
 
-    $('#colour_changer_apply').click(function () {
+    $('#colour_changer_apply').on('click', function () {
         setColour();
     });
 
     $('.config').on('click', loadConfig);
 
-    $('.drop_down_tip').click(function () {
-        helpTab($(this));
-    });
+    $('.drop_down_tip').on('click', helpTab);
 
     loadOptions();
     // setData();
     // console.log(getConfig());
 });
 
-function helpTab(element) {
-    var id = element.attr("id");
-    if (element.attr('class') === 'drop_down_tip') {
-        element.removeClass("drop_down_tip").addClass('drop_down_tip_open');
-        $('#content' + id).show();
+function helpTab() {
+    $('.contentTabs').hide();
+
+    if($(this).hasClass('active')){
+        alert('test');
+        $(this).removeClass('active');
     } else {
-        $('#content' + id).hide();
-        element.removeClass("drop_down_tip_open").addClass('drop_down_tip');
+        $('.drop_down_tip').removeClass('active');
+        $(this).addClass('active');
+        $(this).parent().find('.contentTabs').show();
     }
 }
 
@@ -190,5 +190,16 @@ function setConfigs() {
             borderColour: '#a60037'
         },
         new_user: true
+    });
+}
+
+function revertChanges()
+{
+    chrome.tabs.executeScript({
+        file: "public/js/jquery-3.3.1.min.js"
+    }, function () {
+        chrome.tabs.executeScript({
+            file: "public/js/revert.js"
+        });
     });
 }

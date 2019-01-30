@@ -208,9 +208,6 @@ div hr {
     margin-left: 5px;
     padding-bottom: 15px;
 }
-.drop_down_tip_open {
-    margin-left: 5px;
-}
 
 .drop_down_tip::after {
     margin-right: 15px;
@@ -221,7 +218,7 @@ div hr {
     content: url("../images/circle-right.png");
 }
 
-.drop_down_tip_open::after {
+.drop_down_tip.active::after {
     margin-right: 15px;
     float: right;
     width: 13px;
@@ -238,4 +235,10 @@ div hr {
 .contact_txt_below {
     font-size: 7px;
     margin-left: 1px;
+}
+
+#privacypolicy_link{
+    margin-left: 5px;
+    padding-bottom: 15px;
+    text-decoration: none;
 }
