@@ -235,3 +235,7 @@ div hr {
     padding-bottom: 15px;
     text-decoration: none;
 }
+
+#colour_changer_options_preview_display_title{
+    margin: 0;
+}

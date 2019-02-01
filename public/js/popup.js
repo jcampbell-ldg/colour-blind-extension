@@ -53,6 +53,7 @@ function previewColours() {
         });
         $('#colour_changer_options_preview_message').hide();
         $('#colour_changer_options_preview_display').show();
+        $('#colour_changer_options_preview_display_title').html(items[name]['name']);
         $('#colour_changer_options_preview_display_background_colour').html(items[name]['bgColour']);
         $('#colour_changer_options_preview_display_font_colour').html(items[name]['fontColour']);
         $('#colour_changer_options_preview_display_border_colour').html(items[name]['borderColour']);
