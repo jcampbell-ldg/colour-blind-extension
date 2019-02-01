@@ -35,12 +35,12 @@ body {
     margin: 2px;
 }
 
-#content_section {
+#help_tab_content {
     width: 480px;
     display: inline-flex;
 }
 
-#content {
+#help_tab_content_show {
     overflow: scroll;
     width: 340px;
     border: 1px solid lightgrey;
@@ -87,10 +87,6 @@ body {
 #colour_changer_options {
     width: 75%;
     height: calc(100% - 10px);
-}
-
-#content_colour_changer {
-    overflow: hidden;
 }
 
 #content_colour_changer_holder {
