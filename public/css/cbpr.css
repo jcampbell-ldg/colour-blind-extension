@@ -80,12 +80,9 @@ body{
 
 #colour_changer_apply{
     margin: 5px;
-    height: calc(100% - 10px);
-    width: 25%;
-}
-
-#colour_changer_apply:hover{
-    border: 1px solid black;
+    height: calc(54%);
+    width: 36%;
+    cursor: pointer;
 }
 
 #colour_changer_options{
@@ -241,4 +238,11 @@ div hr {
     margin-left: 5px;
     padding-bottom: 15px;
     text-decoration: none;
+}
+
+#button_test {
+    border: 0;
+    width: 100%;
+    height: 37%;
+    margin-left: 2px;
 }

@@ -11,7 +11,7 @@ $(document).ready(function () {
 
     $('#button_test').on('click', revertChanges);
 
-    $('.tab').click(function () {
+    $('.tab').on('click', function () {
         var contentId = (this.id).slice(0, -4);
         $('.content').hide();
         $('#content_' + contentId).show();
@@ -21,7 +21,7 @@ $(document).ready(function () {
 
     $('.colour_changer_options_tab:lt(3)').show();
 
-    $('#colour_changer_tab_left').click(function () {
+    $('#colour_changer_tab_left').on('click', function () {
         var id = $('#colour_changer_tab_left').nextAll('.colour_changer_options_tab:visible').attr('id');
         var id_count = parseInt(id.slice(-1));
         var total_count = $('.colour_changer_options_tab').length;
@@ -67,7 +67,6 @@ function helpTab() {
     $('.contentTabs').hide();
 
     if($(this).hasClass('active')){
-        alert('test');
         $(this).removeClass('active');
     } else {
         $('.drop_down_tip').removeClass('active');
@@ -163,11 +162,6 @@ function saveConfig() {
             });
         }
     })
-}
-
-function checkForNewUser() {
-
-
 }
 
 //First Time Setup
