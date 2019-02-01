@@ -1,15 +1,18 @@
+//Main file used within the popup. This file is ran anytime the Extension is opened
 $(document).ready(function () {
 
+    //DOM: Can this be removed and put into css?
     $('.contentTabs').hide();
 
+    //Checks if the user is a new user by checking Storage
     chrome.storage.sync.get('new_user', function (items) {
         if (!items['new_user']) {
             firstTimeSetup();
         }
     });
 
-    $('#button_test').on('click', revertChanges);
 
+    //Main Extension Tabs controller - Loads and hides pages
     $('.tab').click(function () {
         var contentId = (this.id).slice(0, -4);
         $('.content').hide();
@@ -18,22 +21,19 @@ $(document).ready(function () {
         $(this).addClass('active');
     });
 
+    //Event listeners
+    $('#button_test').on('click', revertChanges);
     $('#colour_changer_options_tabs .config').on('click', previewColours);
-
-    $('#colour_changer_apply').on('click', function () {
-        setColour();
-    });
-
+    $('#colour_changer_apply').on('click', setColour);
     $('#content_custom_design_settings_configs .config').on('click', loadConfig);
-
     $('.drop_down_tip').on('click', helpTab);
 });
 
+//Function that is used on the help tab to hide/show content
 function helpTab() {
     $('.contentTabs').hide();
 
     if($(this).hasClass('active')){
-        alert('test');
         $(this).removeClass('active');
     } else {
         $('.drop_down_tip').removeClass('active');
@@ -42,6 +42,7 @@ function helpTab() {
     }
 }
 
+//Function that is used to get config from storage and load the preview section
 function previewColours() {
     var id = (this.id).substr(-1);
     var name = 'config_' + id;
@@ -60,15 +61,20 @@ function previewColours() {
     });
 }
 
+//Function that is used to execute Content Script
+//Chrome functions are Asynchronous therefore functions are called in the callback function
 function setColour() {
     var colours = [$('#colour_changer_options_preview_display_background_colour').html(), $('#colour_changer_options_preview_display_font_colour').html()];
 
+    //Chosen Config is first saved in storage
     chrome.storage.sync.set({
         colours: colours
     }, function () {
+        //Then Jquery is executed so that the Content Script has jquery
         chrome.tabs.executeScript({
             file: "public/js/jquery-3.3.1.min.js"
         }, function () {
+            //Then the Content script is executed
             chrome.tabs.executeScript({
                 file: "public/js/content.js"
             });
@@ -76,13 +82,14 @@ function setColour() {
     });
 }
 
+//This function loads the selected config and loads it into the custom design form
 function loadConfig() {
     var id = (this.id.substr(-8));
+    //Load the custom design form template and set any event listeners
     $('#content_custom_design_settings_form').load('/views/custom_design_form.html', function () {
-        $('#custom_design_submit').click(function () {
-            saveConfig();
-        });
+        $('#custom_design_submit').on('click', saveConfig);
 
+        //Get the chosen config from storage and set the values in the form
         chrome.storage.sync.get(id, function (items) {
             $('#custom_design_id').val(id);
             $('#custom_design_name').val(items[id]['name']);
@@ -93,6 +100,7 @@ function loadConfig() {
     });
 }
 
+//This function saves the config submitted in the custom design form
 function saveConfig() {
     var id = $('#custom_design_id').val();
     var name = $('#custom_design_name').val();
@@ -103,24 +111,19 @@ function saveConfig() {
     var config = {};
     config[id] = {name: name, bgColour: background, fontColour: font, borderColour: border};
 
+    //Get current values for config
     chrome.storage.sync.get(id, function (items) {
         if (items[id] != undefined) {
+            //Remove current config
             chrome.storage.sync.remove(id, function () {
-                chrome.storage.sync.set(config, function () {
-                    //SET SUCCESS MESSAGE
-                    console.log('Successfully Saved');
-                });
+                //Save new updated config
+                chrome.storage.sync.set(config);
             });
         }
     })
 }
 
-function checkForNewUser() {
-
-
-}
-
-//First Time Setup
+//First Time Setup - Clears the users storage
 function firstTimeSetup() {
     chrome.storage.sync.clear();
     setConfigs();
@@ -143,11 +146,14 @@ function setConfigs() {
     });
 }
 
+//Function that executes revert script when the Reset button is selected
 function revertChanges()
 {
+    //Execute Jquery so that it is in the revert script
     chrome.tabs.executeScript({
         file: "public/js/jquery-3.3.1.min.js"
     }, function () {
+        //Execute Revert script
         chrome.tabs.executeScript({
             file: "public/js/revert.js"
         });
