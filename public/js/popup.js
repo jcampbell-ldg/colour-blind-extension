@@ -3,8 +3,7 @@ $(document).ready(function () {
     $('.contentTabs').hide();
 
     chrome.storage.sync.get('new_user', function (items) {
-        if (items['new_user']) {
-        } else {
+        if (!items['new_user']) {
             firstTimeSetup();
         }
     });
@@ -19,48 +18,15 @@ $(document).ready(function () {
         $(this).addClass('active');
     });
 
-    $('.colour_changer_options_tab:lt(3)').show();
-
-    $('#colour_changer_tab_left').click(function () {
-        var id = $('#colour_changer_tab_left').nextAll('.colour_changer_options_tab:visible').attr('id');
-        var id_count = parseInt(id.slice(-1));
-        var total_count = $('.colour_changer_options_tab').length;
-
-        if (id_count > 0) {
-            $('.colour_changer_options_tab').hide();
-            $('.colour_changer_options_tab').slice(id_count - 1, id_count + 2).show();
-        }
-    });
-
-    $('#colour_changer_tab_right').on('click', function () {
-        var id = $('#colour_changer_tab_left').nextAll('.colour_changer_options_tab:visible').attr('id');
-        var id_count = parseInt(id.slice(-1));
-        var total_count = $('.colour_changer_options_tab').length;
-
-        if (id_count < (total_count - 3)) {
-            $('.colour_changer_options_tab').hide();
-            $('.colour_changer_options_tab').slice(id_count + 1, id_count + 4).show();
-        }
-    });
-
-    $('.colour_changer_options_tab').on('click', function () {
-        $('.colour_active').removeClass('colour_active');
-        $(this).addClass('colour_active');
-
-        previewColours(this.id);
-    });
+    $('#colour_changer_options_tabs .config').on('click', previewColours);
 
     $('#colour_changer_apply').on('click', function () {
         setColour();
     });
 
-    $('.config').on('click', loadConfig);
+    $('#content_custom_design_settings_configs .config').on('click', loadConfig);
 
     $('.drop_down_tip').on('click', helpTab);
-
-    loadOptions();
-    // setData();
-    // console.log(getConfig());
 });
 
 function helpTab() {
@@ -76,23 +42,21 @@ function helpTab() {
     }
 }
 
-function previewColours(id) {
-    var element = $('#' + id);
-    var backgroundColour = element.data('background');
-    var fontColour = element.data('font');
-    var borderColour = element.data('border');
-    console.log(element.data());
-    $('#colour_changer_options_preview').css({
-        'background-color': backgroundColour,
-        'color': fontColour,
-        'border-color': borderColour
+function previewColours() {
+    var id = (this.id).substr(-1);
+    var name = 'config_' + id;
+    chrome.storage.sync.get(name, function(items){
+        $('#colour_changer_options_preview').css({
+            'background-color': items[name]['bgColour'],
+            'color': items[name]['fontColour'],
+            'border-color': items[name]['borderColour']
+        });
+        $('#colour_changer_options_preview_message').hide();
+        $('#colour_changer_options_preview_display').show();
+        $('#colour_changer_options_preview_display_background_colour').html(items[name]['bgColour']);
+        $('#colour_changer_options_preview_display_font_colour').html(items[name]['fontColour']);
+        $('#colour_changer_options_preview_display_border_colour').html(items[name]['borderColour']);
     });
-
-    $('#colour_changer_options_preview_message').hide();
-    $('#colour_changer_options_preview_display').show();
-    $('#colour_changer_options_preview_display_background_colour').html(backgroundColour);
-    $('#colour_changer_options_preview_display_font_colour').html(fontColour);
-    $('#colour_changer_options_preview_display_border_colour').html(borderColour);
 }
 
 function setColour() {
@@ -108,21 +72,6 @@ function setColour() {
                 file: "public/js/content.js"
             });
         });
-    });
-}
-
-function loadOptions() {
-    var div;
-    chrome.storage.sync.get(null, function (items) {
-        for (key in items) {
-            if (key.substr(0, 6) == 'config') {
-                div = $('#colour_changer_options_tabs').find('.colour_changer_options_tab:empty:first');
-                div.html(items[key]['name']);
-                div.data('background', items[key]['bgColour']);
-                div.data('font', items[key]['fontColour']);
-                div.data('border', items[key]['borderColour']);
-            }
-        }
     });
 }
 
@@ -179,11 +128,11 @@ function firstTimeSetup() {
 //Sets the predefined configs
 function setConfigs() {
     chrome.storage.sync.set({
-        config_1: {name: 'Deuteranopia', bgColour: '#efefff', fontColour: '#252525', borderColour: '#252525'},
-        config_2: {name: 'Protanopia', bgColour: '#e8e8db', fontColour: '#3d3d9b', borderColour: '#3d3d9b'},
-        config_3: {name: 'Tritanopia', bgColour: '#fbdee2', fontColour: '#252525', borderColour: '#252525'},
-        config_4: {name: 'Protanopia/Tritanopia', bgColour: '#b6b690', fontColour: '#3d3d9b', borderColour: '#3d3d9b'},
-        config_5: {
+        config_0: {name: 'Deuteranopia', bgColour: '#efefff', fontColour: '#252525', borderColour: '#252525'},
+        config_1: {name: 'Protanopia', bgColour: '#e8e8db', fontColour: '#3d3d9b', borderColour: '#3d3d9b'},
+        config_2: {name: 'Tritanopia', bgColour: '#fbdee2', fontColour: '#252525', borderColour: '#252525'},
+        config_3: {name: 'Protanopia/Tritanopia', bgColour: '#b6b690', fontColour: '#3d3d9b', borderColour: '#3d3d9b'},
+        config_4: {
             name: 'Deuteranopia/Tritanopia',
             bgColour: '#edf3f7',
             fontColour: '#a60037',
