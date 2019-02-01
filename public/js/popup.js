@@ -22,7 +22,6 @@ $(document).ready(function () {
     });
 
     //Event listeners
-    $('#button_test').on('click', revertChanges);
     $('#colour_changer_options_tabs .config').on('click', previewColours);
     $('#colour_changer_apply').on('click', setColour);
     $('#content_custom_design_settings_configs .config').on('click', loadConfig);
