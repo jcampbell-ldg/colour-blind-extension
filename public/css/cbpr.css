@@ -1,4 +1,4 @@
-#tab_section{
+#tab_section {
     display: inline-flex;
     width: 480px;
 }
@@ -13,34 +13,34 @@
     top: 5px;
 }
 
-.tab:hover{
+.tab:hover {
     background-color: lightgrey;
 }
 
-#home_tab{
+#home_tab {
     border-left: 0;
 }
 
-.active{
+.active {
     border-bottom: 0;
     border-right: 1px solid lightgrey;
     border-left: 1px solid lightgrey;
 }
 
-.active:hover{
+.active:hover {
     background-color: white;
 }
 
-body{
+body {
     margin: 2px;
 }
 
-#content_section{
+#content_section {
     width: 480px;
     display: inline-flex;
 }
 
-#content{
+#content {
     overflow: scroll;
     width: 340px;
     border: 1px solid lightgrey;
@@ -49,7 +49,7 @@ body{
     height: 150px;
 }
 
-#contact_us{
+#contact_us {
     width: 100px;
     margin-top: 10px;
     margin-right: 10px;
@@ -58,68 +58,73 @@ body{
     height: 150px;
 }
 
-#logo{
+#logo {
     padding-left: 5px;
     padding-top: 5px;
     width: 90px;
     height: 30px;
 }
 
-.content{
+.content {
     display: none;
 }
 
-#content_home{
+#content_home {
     display: block;
 }
 
-#colour_changer_apply{
-    height: calc(100% - 10px);
-    width: 25%;
-    border: 1px solid black;
+#colour_changer_apply {
+    margin: 5px;
+    height: calc(54%);
+    width: 27%;
+    cursor: pointer;
 }
 
-#colour_changer_apply:hover{
-    border: 1px solid black;
+#colour_changer_apply p:hover {
+    background-color: rgba(175, 175, 175, 0.41);
 }
 
-#colour_changer_options{
+#colour_changer_options {
     width: 75%;
     height: calc(100% - 10px);
 }
 
-#content_colour_changer_holder{
+#content_colour_changer {
+    overflow: hidden;
+}
+
+#content_colour_changer_holder {
     display: inline-flex;
     width: 100%;
     height: 100%;
     padding: 5px;
 }
 
-#colour_changer_options_tabs{
+#colour_changer_options_tabs {
     width: calc(100% - 16px);
     height: 15%;
     display: inline-flex;
     margin-left: 6px;
 }
 
-#colour_changer_tab_left{
+#colour_changer_tab_left {
     font-size: 28px;
     margin: 1px;
 }
 
-#colour_changer_tab_right{
+#colour_changer_tab_right {
     font-size: 28px;
     margin: 1px;
 }
 
-.colour_changer_options_tab{
+.colour_changer_options_tab {
     width: calc(33% - 19px);
     height: 100%;
     text-align: center;
     display: none;
 }
 
-#colour_changer_options_preview{
+#colour_changer_options_preview {
     width: calc(100% - 18px);
     height: calc(85% - 7.5px);
     margin-left: 5px;
@@ -127,25 +132,25 @@ body{
     border: 1px solid black;
 }
 
-#content_custom_design_holder{
+#content_custom_design_holder {
     display: inline-flex;
     width: 100%;
     height: 100%;
     padding: 5px;
 }
 
-#content_custom_design_preview{
+#content_custom_design_preview {
     width: 25%;
     height: calc(100% - 10px);
     border: 1px solid black;
 }
 
-#content_custom_design_settings{
+#content_custom_design_settings {
     width: 75%;
     height: calc(100% - 10px);
 }
 
-#content_custom_design_settings_form{
+#content_custom_design_settings_form {
     width: calc(100% - 18px);
     height: calc(85% - 7.5px);
     margin-left: 5px;
@@ -153,19 +158,19 @@ body{
     border: 1px solid black;
 }
 
-.custom_design_fields{
+.custom_design_fields {
     display: flex;
     justify-content: space-between;
 }
 
-#content_custom_design_settings_configs{
+#content_custom_design_settings_configs {
     width: calc(100% - 16px);
     height: 15%;
     display: inline-flex;
     margin-left: 6px;
 }
 
-.config{
+.config {
     width: calc(20% - 2px);
     height: calc(100% - 2px);
     border: 1px solid black;
@@ -173,20 +178,20 @@ body{
     text-align: center;
 }
 
-.contact_txt{
+.contact_txt {
     font-size: xx-small;
     text-align: center;
 }
 
-.contact_img{
+.contact_img {
     margin-top: 5px;
     margin-bottom: -10px;
     width: 20px;
-    height:20px;
+    height: 20px;
     margin-left: 40px;
 }
 
-#help-title{
+#help-title {
     margin-left: 30%;
     padding: 2px;
     font-size: x-large;
@@ -225,17 +230,31 @@ div hr {
     margin-left: 5px;
     word-wrap: normal;
 }
+
 .contact_txt_below {
     font-size: 7px;
     margin-left: 1px;
 }
 
-#privacypolicy_link{
+#privacypolicy_link {
     margin-left: 5px;
     padding-bottom: 15px;
     text-decoration: none;
 }
 
-#colour_changer_options_preview_display_title{
+#colour_changer_options_preview_display_title {
     margin: 0;
+}
+
+#button_reset {
+    cursor: pointer;
+    border: 0;
+    width: 100%;
+    height: 37%;
+    margin-left: 2px;
+    margin-bottom: 2px;
+}
+
+#button_reset:hover {
+    background-color: rgba(255, 0, 0, 0.6);
 }

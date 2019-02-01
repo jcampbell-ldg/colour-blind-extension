@@ -27,13 +27,14 @@ $(document).ready(function () {
     $('#colour_changer_apply').on('click', setColour);
     $('#content_custom_design_settings_configs .config').on('click', loadConfig);
     $('.drop_down_tip').on('click', helpTab);
+    $('#button_reset').on('click', revertChanges);
 });
 
 //Function that is used on the help tab to hide/show content
 function helpTab() {
     $('.contentTabs').hide();
 
-    if($(this).hasClass('active')){
+    if ($(this).hasClass('active')) {
         $(this).removeClass('active');
     } else {
         $('.drop_down_tip').removeClass('active');
@@ -46,7 +47,7 @@ function helpTab() {
 function previewColours() {
     var id = (this.id).substr(-1);
     var name = 'config_' + id;
-    chrome.storage.sync.get(name, function(items){
+    chrome.storage.sync.get(name, function (items) {
         $('#colour_changer_options_preview').css({
             'background-color': items[name]['bgColour'],
             'color': items[name]['fontColour'],
@@ -96,8 +97,24 @@ function loadConfig() {
             $('#custom_design_background_colour').val(items[id]['bgColour']);
             $('#custom_design_font_colour').val(items[id]['fontColour']);
             $('#custom_design_border_colour').val(items[id]['borderColour']);
+
+            $('#content_custom_design_preview').css({
+                'background-color': items[id]['bgColour'],
+                'color': items[id]['fontColour'],
+                'border-color': items[id]['borderColour']
+            });
+
+            $('#content_custom_design_text').css({
+                'background-color': items[id]['bgColour'],
+                'color': items[id]['fontColour'],
+                'border-color': items[id]['borderColour']
+            });
+
         });
+
+
     });
+
 }
 
 //This function saves the config submitted in the custom design form
@@ -136,20 +153,13 @@ function setConfigs() {
         config_1: {name: 'Protanopia', bgColour: '#e8e8db', fontColour: '#3d3d9b', borderColour: '#3d3d9b'},
         config_2: {name: 'Tritanopia', bgColour: '#fbdee2', fontColour: '#252525', borderColour: '#252525'},
         config_3: {name: 'Protanopia/Tritanopia', bgColour: '#b6b690', fontColour: '#3d3d9b', borderColour: '#3d3d9b'},
-        config_4: {
-            name: 'Deuteranopia/Tritanopia',
-            bgColour: '#edf3f7',
-            fontColour: '#a60037',
-            borderColour: '#a60037'
-        },
+        config_4: {name: 'Deuteranopia/Tritanopia', bgColour: '#edf3f7', fontColour: '#a60037', borderColour: '#a60037'},
         new_user: true
     });
 }
 
-//Function that executes revert script when the Reset button is selected
-function revertChanges()
-{
-    //Execute Jquery so that it is in the revert script
+//Execute Jquery so that it is in the revert script
+function revertChanges() {
     chrome.tabs.executeScript({
         file: "public/js/jquery-3.3.1.min.js"
     }, function () {
